@@ -1,8 +1,7 @@
-Azure Blueprint Automation: Three-Tier Web Applications for UK-OFFICIAL
-===================================================================
+# Azure Blueprint Automation: Three-Tier Web Applications for UK-OFFICIAL
 
-Overview
-========
+
+## Overview
 
  This article provides guidance and automation scripts to deliver a Microsoft Azure three-tier web based architecture appropriate for handling many workloads classified as OFFICIAL in the United Kingdom.
 
@@ -19,8 +18,7 @@ Overview
 
  If you do not have an Azure subscription then you can sign up quickly and easily - [Get Started with Azure](https://azure.microsoft.com/get-started/).
 
-Architecture Diagram and Components
-===================================
+## Architecture Diagram and Components
 
  The Azure templates deliver a three-tier web application
  architecture in an Azure cloud environment that supports UK-OFFICIAL
@@ -126,7 +124,7 @@ Storage
     - (1) Diagnostic Locally Redundant Storage (LRS) account for the Data Tier Availability Set
 
 
- ### Deployment Architecture:
+### Deployment Architecture:
 
 **On-Premises Network**: A private local-area network implemented in an organisation.
 
@@ -162,8 +160,7 @@ Azure Activity Log is an Azure platform service that captures all actions on a s
 **Network Monitoring and Alerting**: [Azure Network Watcher](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview) is a platform service provides network packet capture, flow logging, topology tools and diagnostics  for network traffics within your VNets.
 
 
-Guidance and Recommendations
-=============================
+## Guidance and Recommendations
 
 
 ### Business Continuity
@@ -309,8 +306,7 @@ It is recommended that customers enable Azure Security Center in their
 Azure Subscription.
 
 
-NCSC Security Matrix Compliance Documentation
-===============
+## NCSC Security Matrix Compliance Documentation
 
 The Crown Commercial Service (an agency that works to improve commercial and procurement activity by the government) renewed the
 classification of Microsoft in-scope enterprise cloud services to  G-Cloud v6, covering all its offerings at the OFFICIAL level. Details
@@ -332,12 +328,12 @@ This UK-OFFICIAL Azure Blueprint Solution aligns to the 14 cloud security
  answered before moving to cloud services. In response, Microsoft Azure answered the CSA Consensus Assessment Initiative Questionnaire ([CSA CAIQ](https://www.microsoft.com/TrustCenter/Compliance/CSA)), which describes how Microsoft
  addresses the suggested principles.
 
- Deploy the Solution
- ===============
+## Deploy the Solution
+
 There are two methods that deployment users may use to deploy this Azure Blueprint solution. The first method uses a PowerShell script, whereas the second method utilises Azure Portal to deploy the reference architecture. Detailed deployment instructions are available [here](https://github.com/Azure/fedramp-iaas-webapp).
 
- Disclaimer
- ===========
+## Disclaimer
+
  - This document is for informational purposes only. MICROSOFT MAKES NO WARRANTIES, EXPRESS, IMPLIED, OR STATUTORY, AS TO THE INFORMATION IN THIS DOCUMENT. This document is provided "as-is." Information and views expressed in this document, including URL and other Internet website references, may change without notice. Customers reading this document bear the risk of using it.
  - This document does not provide customers with any legal rights to any intellectual property in any Microsoft product or solutions.
  - Customers may copy and use this document for internal reference purposes.
