@@ -330,7 +330,7 @@ This UK-OFFICIAL Azure Blueprint Solution aligns to the 14 cloud security
 
 ## Deploy the Solution
 
-There are two methods that deployment users may use to deploy this Azure Blueprint solution. The first method uses a PowerShell script, whereas the second method utilises Azure Portal to deploy the reference architecture. Detailed deployment instructions are available [here](https://github.com/Azure/fedramp-iaas-webapp).
+There are two methods that deployment users may use to deploy this Azure Blueprint solution. The first method uses a PowerShell script, whereas the second method utilises Azure Portal to deploy the reference architecture. Detailed deployment instructions are available [here](https://github.com/Azure/uk-official-three-tier-webapp).
 
 ## Disclaimer
 
