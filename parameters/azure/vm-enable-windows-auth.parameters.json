@@ -16,10 +16,10 @@
               "type": "CustomScriptExtension",
               "typeHandlerVersion": "1.8",
               "autoUpgradeMinorVersion": false,
-              "settingsConfigMapperUri": "https://raw.githubusercontent.com/mspnp/reference-architectures/master/compliance/uk-official/three-tier-web-with-adds/templates/onpremise/enable-windows-auth-extension-settings-mapper.json",
+              "settingsConfigMapperUri": "https://raw.githubusercontent.com/Azure/uk-official-three-tier-webapp/master/templates/onpremise/enable-windows-auth-extension-settings-mapper.json",
               "settingsConfig": {
                 "fileUris": [
-                  "https://raw.githubusercontent.com/mspnp/reference-architectures/master/compliance/uk-official/three-tier-web-with-adds/extensions/enable-windows-auth.ps1"
+                  "https://raw.githubusercontent.com/Azure/uk-official-three-tier-webapp/master/extensions/enable-windows-auth.ps1"
                 ]
               },
               "protectedSettingsConfig": {

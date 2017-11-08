@@ -54,7 +54,7 @@
             "typeHandlerVersion": "2.20",
             "autoUpgradeMinorVersion": true,
             "settingsConfig": {
-              "modulesUrl": "https://raw.githubusercontent.com/mspnp/reference-architectures/master/compliance/uk-official/three-tier-web-with-adds/extensions/iisaspnet.ps1.zip",
+              "modulesUrl": "https://raw.githubusercontent.com/Azure/uk-official-three-tier-webapp/master/extensions/iisaspnet.ps1.zip",
               "configurationFunction": "iisaspnet.ps1\\iisaspnet"
             },
             "protectedSettingsConfig": { }

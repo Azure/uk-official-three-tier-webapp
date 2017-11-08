@@ -40,7 +40,7 @@
   },
   "variables": {
     "templateBaseUrl": "https://raw.githubusercontent.com/mspnp/template-building-blocks/v1.0.0/",
-    "localRepoBaseUrl": "https://raw.githubusercontent.com/mspnp/reference-architectures/master/compliance/uk-official/three-tier-web-with-adds/",
+    "localRepoBaseUrl": "https://raw.githubusercontent.com/Azure/uk-official-three-tier-webapp/master/",
     "operationalVirtualNetworkName": "azure-operational-vnet",
     "managementlVirtualNetworkName": "azure-mgmt-vnet",
     "buildingBlocks": {

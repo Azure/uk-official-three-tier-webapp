@@ -34,7 +34,7 @@ Overview
  (ARM) templates deploy an environment that aligns to the National Cyber Security Centre (NCSC) [Cloud Security Principles](https://www.ncsc.gov.uk/guidance/implementing-cloud-security-principles) and  the Center for Internet Security (CIS) [Critical Security
  Controls](https://www.cisecurity.org/critical-controls.cfm).
 
- The NCSC recommend their Cloud Security Principles be used by customers to evaluate the security properties of the service, and to help understand the division of responsibility between the customer and supplier. We’ve provided information against each of these principles to help you understand the split of responsibilities.
+ The NCSC recommend their Cloud Security Principles be used by customers to evaluate the security properties of the service, and to help understand the division of responsibility between the customer and supplier. Weï¿½ve provided information against each of these principles to help you understand the split of responsibilities.
 
  This architecture and corresponding ARM templates are underpinned by the Microsoft whitepaper [Azure Blueprint for the UK Government](https://aka.ms/azureblueprintukg-cloud). This paper catalogue how Azure services align with the fourteen
  cloud security principles set forth in the CESG/NCSC publication [Implementing the Cloud Security Principles](https://www.ncsc.gov.uk/guidance/implementing-cloud-security-principles)"
@@ -114,7 +114,7 @@ Guidance and Recommendations
 > the activity log, metrics, and diagnostic logs of all your Azure
 > resources. Azure Monitor can be configured to visualize, query, route,
 > archive, and act on the metrics and logs coming from resources in
-> Azure. It is recommended that Resource Based Access Control is used to secure the audit trail to ensure that users don’t have the ability to modify the logs.
+> Azure. It is recommended that Resource Based Access Control is used to secure the audit trail to ensure that users donï¿½t have the ability to modify the logs.
 >
 > **Activity Logs**: Configure [Azure Activity
 > Logs](https://docs.microsoft.com/en-us/azure/monitoring-and-diagnostics/monitoring-overview-activity-logs)
@@ -408,7 +408,7 @@ Portal.
 ## Deployment Process
 
 A deployment for this reference architecture is available on
-[GitHub](https://github.com/mspnp/reference-architectures/tree/master/compliance/uk-official/three-tier-web-with-adds). The templates can be cloned or downloaded if customisation of parameters are requried.
+[GitHub](https://github.com/Azure/uk-official-three-tier-webapp). The templates can be cloned or downloaded if customisation of parameters are requried.
 The reference architecture is deployed in four stages. To deploy the architecture, follow these steps for each deployment stage -
 
 For Virtual Machines The parameter files include a hard-coded
@@ -418,11 +418,8 @@ troubleshooting** blade.
 
 ## Deploy Networking Infrastructure
   
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fcompliance%2Fuk-official%2Fthree-tier-web-with-adds%2Ftemplates%2Fvirtualnetwork.azuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fuk-official-three-tier-webapp%2Fmaster%2Ftemplates%2Fvirtualnetwork.azuredeploy.json" target="_blank">
 <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png"/>
-</a>
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fcompliance%2Fuk-official%2Fthree-tier-web-with-adds%2Ftemplates%2Fvirtualnetwork.azuredeploy.json" target="_blank">
-<img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.png"/>
 </a>
 
 1. Click on the **Deploy to Azure** button to begin the first stage of the deployment. The link takes you to the Azure Portal.
@@ -436,13 +433,9 @@ troubleshooting** blade.
 
 
 ## Deploy Active Directory Domain 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fcompliance%2Fuk-official%2Fthree-tier-web-with-adds%2Ftemplates%2Faads.azuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fuk-official-three-tier-webapp%2Fmaster%2Ftemplates%2Faads.azuredeploy.json" target="_blank">
 <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png"/>
 </a>
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fcompliance%2Fuk-official%2Fthree-tier-web-with-adds%2Ftemplates%2Faads.azuredeploy.json" target="_blank">
-<img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.png"/>
-</a>
-
 
 1. Click on the **Deploy to Azure** button to begin the first stage of the deployment. The link takes you to the Azure Portal.
 2. Select **Create New** and enter a value such as `uk-official-adds-rg` in the **Resource group** textbox.
@@ -459,13 +452,9 @@ troubleshooting** blade.
 
 
 ## Deploy operational workload infrastructure 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fcompliance%2Fuk-official%2Fthree-tier-web-with-adds%2Ftemplates%2Fworkloads.azuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fuk-official-three-tier-webapp%2Fmaster%2Ftemplates%2Fworkloads.azuredeploy.json" target="_blank">
 <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png"/>
 </a>
-<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2Fmspnp%2Freference-architectures%2Fmaster%2Fcompliance%2Fuk-official%2Fthree-tier-web-with-adds%2Ftemplates%2Fworkloads.azuredeploy.json" target="_blank">
-<img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.png"/>
-</a>
-
 
 1. Click on the **Deploy to Azure** button to begin the first stage of the deployment. The link takes you to the Azure Portal.
 2. Select **Create New** and enter a value such as `uk-official-operational-rg` in the **Resource group** textbox.
