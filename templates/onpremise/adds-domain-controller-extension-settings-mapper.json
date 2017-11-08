@@ -1,0 +1,28 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "deploymentContext": { "type": "object" },
+    "source": { "type": "object" },
+    "context": { "type": "object" }
+  },
+  "variables": {
+    "instance": {
+      "settings": {
+        "fileUris": "[parameters('source').settingsConfig.fileUris]",
+        "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -Command \"& {.\\adds.ps1 -SafeModePassword \\\"', parameters('source').settingsConfig.activeDirectorySettings.safeModePassword, '\\\" -DomainName \\\"', parameters('source').settingsConfig.activeDirectorySettings.domainName, '\\\" -AdminUser \\\"', parameters('source').settingsConfig.activeDirectorySettings.adminUser, '\\\" -AdminPassword \\\"', parameters('source').settingsConfig.activeDirectorySettings.adminPassword, '\\\" -SiteName \\\"', parameters('source').settingsConfig.activeDirectorySettings.siteName, '\\\"}\"')]"
+      },
+      "protectedSettings": { }
+    }
+
+  },
+  "resources": [
+
+  ],
+  "outputs": {
+    "settings": {
+      "type": "object",
+      "value": "[variables('instance')]"
+    }
+  }
+}

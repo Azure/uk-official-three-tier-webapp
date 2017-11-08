@@ -1,0 +1,33 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualMachinesExtensionSettings": {
+      "metadata": {
+        "description": "VM settings for enabling windows authentication"
+      },
+      "value": [
+        {
+          "vms": [ "operational-web-vm1", "operational-web-vm2", "operational-biz-vm1", "operational-biz-vm2", "operational-data-vm1", "operational-data-vm2", "azure-mgmt-vm1" ],
+          "extensions": [
+            {
+              "name": "enable-windows-auth",
+              "publisher": "Microsoft.Compute",
+              "type": "CustomScriptExtension",
+              "typeHandlerVersion": "1.8",
+              "autoUpgradeMinorVersion": false,
+              "settingsConfigMapperUri": "https://raw.githubusercontent.com/mspnp/reference-architectures/master/compliance/uk-official/three-tier-web-with-adds/templates/onpremise/enable-windows-auth-extension-settings-mapper.json",
+              "settingsConfig": {
+                "fileUris": [
+                  "https://raw.githubusercontent.com/mspnp/reference-architectures/master/compliance/uk-official/three-tier-web-with-adds/extensions/enable-windows-auth.ps1"
+                ]
+              },
+              "protectedSettingsConfig": {
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

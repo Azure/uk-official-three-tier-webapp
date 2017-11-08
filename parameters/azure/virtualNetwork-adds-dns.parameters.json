@@ -1,0 +1,48 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualNetworkSettings": {
+      "metadata": {
+        "description": "ADDS DNS settings"
+      },
+      "value": {
+        "name": "azure-operational-vnet",
+        "addressPrefixes": [
+          "10.0.0.0/16"
+        ],
+        "subnets": [
+          {
+            "name": "GatewaySubnet",
+            "addressPrefix": "10.0.255.224/27"
+          },
+          {
+            "name": "web",
+            "addressPrefix": "10.0.1.0/24"
+          },
+          {
+            "name": "biz",
+            "addressPrefix": "10.0.2.0/24"
+          },
+          {
+            "name": "data",
+            "addressPrefix": "10.0.3.0/24"
+          },
+          {
+            "name": "adds",
+            "addressPrefix": "10.0.4.0/27"
+          },
+          {
+            "name": "ApplicationGatewaySubnet",
+            "addressPrefix": "10.0.254.224/29"
+          }
+        ],
+        "dnsServers": [
+          "10.0.4.4",
+          "10.0.4.5",
+          "168.63.129.16"
+        ]
+      }
+    }
+  }
+}

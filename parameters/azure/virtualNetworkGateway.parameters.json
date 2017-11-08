@@ -1,0 +1,44 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualNetworkSettings": {
+      "metadata": {
+        "description": "Vnet settings"
+      },
+      "value": {
+        "name": "azure-operational-vnet",
+        "resourceGroup": "uk-official-networking-rg"
+      }
+    },
+    "virtualNetworkGatewaySettings": {
+      "metadata": {
+        "description": "VPN Gateway settings"
+      },
+      "value": {
+        "name": "operational-vpn-vgw",
+        "gatewayType": "Vpn",
+        "vpnType": "RouteBased",
+        "sku": "Standard"
+      }
+    },
+    "connectionSettings": {
+      "metadata": {
+        "description": "Local connection settings"
+      },
+      "value": {
+        "name": "operational-vpn-cn",
+        "connectionType": "IPSec",
+        "sharedKey": "123secret",
+        "virtualNetworkGateway1": {
+          "name": "operational-vpn-vgw"
+        },
+        "localNetworkGateway": {
+          "name": "azure-hybrid-vpn-lgw",
+          "ipAddress": "1.1.1.1",
+          "addressPrefixes": [ "192.168.0.0/16" ]
+        }
+      }
+    }
+  }
+}

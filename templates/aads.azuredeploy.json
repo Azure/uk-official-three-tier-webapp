@@ -1,0 +1,225 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "operationalVirtualNetworkResourceGroupName": {
+      "type": "string",
+      "defaultValue": "uk-official-networking-rg",
+      "metadata": {
+        "description": "Operational VNet Resource Group"
+      }
+    },
+    "domainName": {
+      "type": "string",
+      "defaultValue": "treyresearch.net",
+      "metadata": {
+        "description": "AD Domain"
+      }
+    },
+    "vmAdminUserName": {
+      "type": "string",
+      "defaultValue": "AdminUser",
+      "metadata": {
+        "description": "VM Administrator Name"
+      }
+    },
+    "vmAdminPassword": {
+      "type": "string",
+      "defaultValue": "AweS0me@PW",
+      "metadata": {
+        "description": "VM Admin Password"
+      }
+    },
+    "aDSafeModePassword": {
+      "type": "string",
+      "defaultValue": "Saf3M0de@PW",
+      "metadata": {
+        "description": "AD Safemode Password"
+      }
+    }
+  },
+  "variables": {
+    "templateBaseUrl": "https://raw.githubusercontent.com/mspnp/template-building-blocks/v1.0.0/",
+    "localRepoBaseUrl": "https://raw.githubusercontent.com/mspnp/reference-architectures/master/compliance/uk-official/three-tier-web-with-adds/",
+    "operationalVirtualNetworkName": "azure-operational-vnet",
+    "managementlVirtualNetworkName": "azure-mgmt-vnet",
+    "buildingBlocks": {
+      "virtualNetworkTemplate": "[concat(variables('templateBaseUrl'), 'templates/buildingBlocks/vnet-n-subnet/azuredeploy.json')]",
+      "virtualMachineTemplate": "[concat(variables('templateBaseUrl'), 'templates/buildingBlocks/multi-vm-n-nic-m-storage/azuredeploy.json')]",
+      "virtualMachineExtensionsTemplate": "[concat(variables('templateBaseUrl'), 'templates/buildingBlocks/virtualMachine-extensions/azuredeploy.json')]",
+      "antiMalwareTemplate": "[concat(variables('templateBaseUrl'), '/templates/resources/Microsoft.Compute/virtualMachines/extensions/vm-extension-passthrough-settings-mapper.json')]"
+    },
+    "parameterFiles": {
+      "azureVirtualNetworkDnsParametersFile": "[concat(variables('localRepoBaseUrl'), 'parameters/azure/virtualNetwork-adds-dns.parameters.json')]"
+    },
+    "templates": {
+      "installAdds": "[concat(variables('localRepoBaseUrl'), 'templates/onpremise/adds-domain-controller-extension-settings-mapper.json')]",
+      "installAddsScript": "[concat(variables('localRepoBaseUrl'), '/extensions/adds.ps1')]"
+    }
+  },
+  "resources": [
+    {
+      "apiVersion": "2015-01-01",
+      "name": "operational-adds-deployment-vms",
+      "type": "Microsoft.Resources/deployments",
+      "properties": {
+        "mode": "incremental",
+        "templateLink": {
+          "uri": "[variables('buildingBlocks').virtualMachineTemplate]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "virtualMachinesSettings": {
+            "value": {
+              "namePrefix": "operational-ad",
+              "computerNamePrefix": "aad",
+              "size": "Standard_DS3_v2",
+              "osType": "Windows",
+              "adminUsername": "[parameters('vmAdminUserName')]",
+              "adminPassword": "[parameters('vmAdminPassword')]",
+              "osAuthenticationType": "password",
+              "nics": [
+                {
+                  "isPublic": "false",
+                  "subnetName": "adds",
+                  "privateIPAllocationMethod": "Static",
+                  "startingIPAddress": "10.0.4.4",
+                  "enableIPForwarding": false,
+                  "dnsServers": [
+                  ],
+                  "isPrimary": "true"
+                }
+              ],
+              "imageReference": {
+                "publisher": "MicrosoftWindowsServer",
+                "offer": "WindowsServer",
+                "sku": "2012-R2-Datacenter",
+                "version": "latest"
+              },
+              "dataDisks": {
+                "count": 1,
+                "properties": {
+                  "diskSizeGB": 127,
+                  "caching": "None",
+                  "createOption": "Empty"
+                }
+              },
+              "osDisk": {
+                "caching": "ReadWrite"
+              },
+              "extensions": [
+              ],
+              "availabilitySet": {
+                "useExistingAvailabilitySet": "No",
+                "name": "operational-ad-as"
+              }
+            }
+          },
+          "virtualNetworkSettings": {
+            "value": {
+              "name": "[variables('operationalVirtualNetworkName')]",
+              "resourceGroup": "[parameters('operationalVirtualNetworkResourceGroupName')]"
+            }
+          },
+          "buildingBlockSettings": {
+            "value": {
+              "storageAccountsCount": 2,
+              "vmCount": 2,
+              "vmStartIndex": 1
+            }
+          }
+        }
+      }
+    },
+    {
+      "apiVersion": "2015-01-01",
+      "name": "operational-azure-adds-dc-deployment",
+      "type": "Microsoft.Resources/deployments",
+      "dependsOn": [
+        "[concat('Microsoft.Resources/deployments/', 'operational-adds-deployment-vms')]"
+      ],
+      "properties": {
+        "mode": "incremental",
+        "templateLink": {
+          "uri": "[variables('buildingBlocks').virtualMachineExtensionsTemplate]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parameters": {
+          "virtualMachinesExtensionSettings": {
+            "value": [
+              {
+                "vms": [ "operational-ad-vm1", "operational-ad-vm2" ],
+                "extensions": [
+                  {
+                    "name": "install-adds",
+                    "publisher": "Microsoft.Compute",
+                    "type": "CustomScriptExtension",
+                    "typeHandlerVersion": "1.8",
+                    "autoUpgradeMinorVersion": false,
+                    "settingsConfigMapperUri": "[variables('templates').installAdds]",
+                    "settingsConfig": {
+                      "activeDirectorySettings": {
+                        "domainName": "[parameters('domainName')]",
+                        "adminUser": "[parameters('vmAdminUserName')]",
+                        "adminPassword": "[parameters('vmAdminPassword')]",
+                        "siteName": "Default-First-Site-Name",
+                        "safeModePassword": "[parameters('aDSafeModePassword')]"
+                      },
+                      "fileUris": [
+                        "[variables('templates').installAddsScript]"
+                      ]
+                    },
+                    "protectedSettingsConfig": {
+                    }
+                  },
+                  {
+                    "name": "IaaSAntimalware",
+                    "publisher": "Microsoft.Azure.Security",
+                    "type": "IaaSAntimalware",
+                    "typeHandlerVersion": "1.3",
+                    "autoUpgradeMinorVersion": true,
+                    "settingsConfigMapperUri": "[variables('buildingBlocks').antiMalwareTemplate]",
+                    "settingsConfig": {
+                      "AntimalwareEnabled": true,
+                      "RealtimeProtectionEnabled": "false",
+                      "ScheduledScanSettings": {
+                        "isEnabled": "false",
+                        "day": "7",
+                        "time": "120",
+                        "scanType": "Quick"
+                      },
+                      "Exclusions": {
+                      }
+                    },
+                    "protectedSettingsConfig": { }
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "apiVersion": "2015-01-01",
+      "name": "operational-adds-deployment-dns",
+      "type": "Microsoft.Resources/deployments",
+      "dependsOn": [
+        "[concat('Microsoft.Resources/deployments/', 'operational-adds-deployment-vms')]",
+        "[concat('Microsoft.Resources/deployments/', 'operational-azure-adds-dc-deployment')]"
+      ],
+      "properties": {
+        "mode": "incremental",
+        "templateLink": {
+          "uri": "[variables('buildingBlocks').virtualNetworkTemplate]",
+          "contentVersion": "1.0.0.0"
+        },
+        "parametersLink": {
+          "uri": "[variables('parameterFiles').azureVirtualNetworkDnsParametersFile]",
+          "contentVersion": "1.0.0.0"
+        }
+      }
+    }
+  ]
+}
+

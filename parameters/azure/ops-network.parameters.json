@@ -1,0 +1,119 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vpnType": {
+      "metadata": {
+        "description": "VPN Type"
+      },
+      "value": "RouteBased"
+    },
+    "localGatewayName": {
+      "metadata": {
+        "description": "Local gateway name"
+      },
+      "value": "azure-hybrid-vpn-lgw"
+    },
+    "localGatewayIpAddress": {
+      "metadata": {
+        "description": "Local gateway address"
+      },
+      "value": "1.1.1.1"
+    },
+    "localAddressPrefix": {
+      "metadata": {
+        "description": "Local address prefix"
+      },
+      "value": "192.168.0.0/16"
+    },
+    "virtualNetworkName": {
+      "metadata": {
+        "description": "Vnet name"
+      },
+      "value": "azure-operational-vnet"
+    },
+    "azureVNetAddressPrefix": {
+      "metadata": {
+        "description": "Vnet address prefix"
+      },
+      "value": "10.0.0.0/16"
+    },
+    "gatewaySubnetPrefix": {
+      "metadata": {
+        "description": "Gateway subnet prefix"
+      },
+      "value": "10.0.255.224/29"
+    },
+    "gatewayPublicIPName": {
+      "metadata": {
+        "description": "Gate way public IP name"
+      },
+      "value": "vpn-gateway-pip"
+    },
+    "gatewayName": {
+      "metadata": {
+        "description": "Gateway name"
+      },
+      "value": "operational-vpn-vgw"
+    },
+    "connectionName": {
+      "metadata": {
+        "description": "Connection Name"
+      },
+      "value": "operational-vpn-cn"
+    },
+    "sharedKey": {
+      "metadata": {
+        "description": "VPN shared key"
+      },
+      "value": "123secret"
+    },
+    "applicationGatewayName": {
+      "metadata": {
+        "description": "Application Gateway Name"
+      },
+      "value": "azure-app-gateway"
+    },
+    "applicationGatewaySize": {
+      "metadata": {
+        "description": "Application gateway size"
+      },
+      "value": "Standard_Small"
+    },
+    "applicationGatewayInstanceCount": {
+      "metadata": {
+        "description": "Application gateway instance count"
+      },
+      "value": 2
+    },
+    "frontendPort": {
+      "metadata": {
+        "description": "Application gateway front end port"
+      },
+      "value": 80
+    },
+    "backendPort": {
+      "metadata": {
+        "description": "Application gateway back end port"
+      },
+      "value": 80
+    },
+    "backendIPAddresses": {
+      "metadata": {
+        "description": "Application gateway backend IP address"
+      },
+      "value": [
+        {
+          "IpAddress": "10.0.1.254"
+        }
+      ]
+    },
+    "cookieBasedAffinity": {
+      "metadata": {
+        "description": "Application gateway cookie affinity"
+      },
+      "value": "Disabled"
+    }
+  }
+}
+

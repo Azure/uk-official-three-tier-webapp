@@ -1,0 +1,49 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "deploymentContext": {
+      "type": "object",
+      "defaultValue": {
+        "parentTemplateUniqueString": "bbConn"
+      }
+    },
+    "connectionSettings": {
+      "type": "object"
+    }
+  },
+  "variables": {
+    "templateUniqueString": "[uniqueString(concat(string(parameters('deploymentContext')), string(parameters('connectionSettings'))))]",
+    "connectionTemplate": "https://raw.githubusercontent.com/mspnp/template-building-blocks/v1.0.0/templates/resources/Microsoft.Network/connections/connection.json",
+    "connectionDeploymentName": "[concat(parameters('deploymentContext').parentTemplateUniqueString, '-deployConn-', variables('templateUniqueString'))]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2015-01-01",
+      "name": "[variables('connectionDeploymentName')]",
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[variables('connectionTemplate')]"
+        },
+        "parameters": {
+          "deploymentContext": {
+            "value": {
+              "parentTemplateUniqueString": "[concat(variables('templateUniqueString'), '-deployConn')]"
+            }
+          },
+          "connectionSettings": {
+            "value": "[parameters('connectionSettings')]"
+          }
+        }
+      }
+    }
+  ],
+  "outputs": {
+    "resources": {
+      "type": "array",
+      "value": "[reference(variables('connectionDeploymentName')).outputResources]"
+    }
+  }
+}

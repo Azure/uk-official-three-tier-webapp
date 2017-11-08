@@ -1,0 +1,28 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualNetworkSettings": {
+      "metadata": {
+        "description": "Settings for Mgmt Vnet"
+      },
+      "value": {
+        "name": "azure-mgmt-vnet",
+        "addressPrefixes": [
+          "10.1.0.0/24"
+        ],
+        "subnets": [
+          {
+            "name": "mgmt-subnet",
+            "addressPrefix": "10.1.0.0/27"
+          }
+        ],
+        "dnsServers": [
+          "10.0.4.4",
+          "10.0.4.5",
+          "168.63.129.16"
+        ]
+      }
+    }
+  }
+}

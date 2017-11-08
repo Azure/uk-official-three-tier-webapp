@@ -1,0 +1,161 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualMachinesSettings": {
+      "metadata": {
+        "description": "VM Settings for web tier"
+      },
+      "value": {
+        "namePrefix": "operational-web",
+        "computerNamePrefix": "web",
+        "size": "Standard_DS1_v2",
+        "osType": "windows",
+        "adminUsername": "AdminUser",
+        "adminPassword": "AweS0me@PW",
+        "osAuthenticationType": "password",
+        "nics": [
+          {
+            "isPublic": "false",
+            "subnetName": "web",
+            "privateIPAllocationMethod": "Dynamic",
+            "isPrimary": "true",
+            "enableIPForwarding": false,
+            "dnsServers": [ ]
+          }
+        ],
+        "imageReference": {
+          "publisher": "MicrosoftWindowsServer",
+          "offer": "WindowsServer",
+          "sku": "2012-R2-Datacenter",
+          "version": "latest"
+        },
+        "dataDisks": {
+          "count": 1,
+          "properties": {
+            "diskSizeGB": 128,
+            "caching": "None",
+            "createOption": "Empty"
+          }
+        },
+        "osDisk": {
+          "caching": "ReadWrite"
+        },
+        "availabilitySet": {
+          "useExistingAvailabilitySet": "No",
+          "name": "operational-web-vm-as"
+        },
+        "extensions": [
+          {
+            "name": "iis-config-ext",
+            "settingsConfigMapperUri": "https://raw.githubusercontent.com/mspnp/template-building-blocks/v1.0.0/templates/resources/Microsoft.Compute/virtualMachines/extensions/vm-extension-passthrough-settings-mapper.json",
+            "publisher": "Microsoft.Powershell",
+            "type": "DSC",
+            "typeHandlerVersion": "2.20",
+            "autoUpgradeMinorVersion": true,
+            "settingsConfig": {
+              "modulesUrl": "https://raw.githubusercontent.com/mspnp/reference-architectures/master/compliance/uk-official/three-tier-web-with-adds/extensions/iisaspnet.ps1.zip",
+              "configurationFunction": "iisaspnet.ps1\\iisaspnet"
+            },
+            "protectedSettingsConfig": { }
+          },
+          {
+            "name": "IaaSAntimalware",
+            "publisher": "Microsoft.Azure.Security",
+            "type": "IaaSAntimalware",
+            "typeHandlerVersion": "1.3",
+            "autoUpgradeMinorVersion": true,
+            "settingsConfigMapperUri": "https://raw.githubusercontent.com/mspnp/template-building-blocks/v1.0.0/templates/resources/Microsoft.Compute/virtualMachines/extensions/vm-extension-passthrough-settings-mapper.json",
+            "settingsConfig": {
+              "AntimalwareEnabled": true,
+              "RealtimeProtectionEnabled": "false",
+              "ScheduledScanSettings": {
+                "isEnabled": "false",
+                "day": "7",
+                "time": "120",
+                "scanType": "Quick"
+              },
+              "Exclusions": {
+              }
+            },
+            "protectedSettingsConfig": {
+            }
+          }
+        ]
+
+      }
+    },
+    "loadBalancerSettings": {
+      "value": {
+        "name": "operational-web-lb",
+        "frontendIPConfigurations": [
+          {
+            "name": "operational-web-lb-fe",
+            "loadBalancerType": "internal",
+            "internalLoadBalancerSettings": {
+              "privateIPAddress": "10.0.1.254",
+              "subnetName": "web"
+            }
+          }
+        ],
+        "backendPools": [
+          {
+            "name": "operational-web-lb-bep",
+            "nicIndex": 0
+          }
+        ],
+        "loadBalancingRules": [
+          {
+            "name": "http-rule",
+            "frontendPort": 80,
+            "backendPort": 80,
+            "protocol": "Tcp",
+            "backendPoolName": "operational-web-lb-bep",
+            "frontendIPConfigurationName": "operational-web-lb-fe",
+            "probeName": "http-probe",
+            "enableFloatingIP": false
+          },
+          {
+            "name": "https-rule",
+            "frontendPort": 443,
+            "backendPort": 443,
+            "protocol": "Tcp",
+            "backendPoolName": "operational-web-lb-bep",
+            "frontendIPConfigurationName": "operational-web-lb-fe",
+            "probeName": "https-probe",
+            "enableFloatingIP": false
+          }
+        ],
+        "probes": [
+          {
+            "name": "http-probe",
+            "port": 80,
+            "protocol": "Tcp",
+            "requestPath": null
+          },
+          {
+            "name": "https-probe",
+            "port": 443,
+            "protocol": "Tcp",
+            "requestPath": null
+          }
+        ],
+        "inboundNatRules": [ ]
+      }
+    },
+    "virtualNetworkSettings": {
+      "value": {
+        "name": "azure-operational-vnet",
+        "resourceGroup": "uk-official-networking-rg"
+      }
+    },
+    "buildingBlockSettings": {
+      "value": {
+        "storageAccountsCount": 2,
+        "vmCount": 2,
+        "vmStartIndex": 1
+      }
+    }
+  }
+}
+

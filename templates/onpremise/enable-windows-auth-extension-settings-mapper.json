@@ -1,0 +1,28 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "deploymentContext": { "type": "object" },
+    "source": { "type": "object" },
+    "context": { "type": "object" }
+  },
+  "variables": {
+    "instance": {
+      "settings": {
+        "fileUris": "[parameters('source').settingsConfig.fileUris]",
+        "commandToExecute": "[concat('powershell -ExecutionPolicy Unrestricted -Command \"& {.\\enable-windows-auth.ps1}\"')]"
+      },
+      "protectedSettings": { }
+    }
+
+  },
+  "resources": [
+
+  ],
+  "outputs": {
+    "settings": {
+      "type": "object",
+      "value": "[variables('instance')]"
+    }
+  }
+}

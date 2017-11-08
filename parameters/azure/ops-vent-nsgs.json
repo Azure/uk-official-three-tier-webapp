@@ -1,0 +1,55 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualNetworkSettings": {
+      "metadata": {
+        "description": "Vnet settings"
+      },
+      "value": {
+        "name": "azure-operational-vnet"
+      }
+    },
+    "networkSecurityGroupsSettings": {
+      "metadata": {
+        "description": "NSG settings"
+      },
+      "value": [
+        {
+          "name": "ops-subnet-nsg",
+          "subnets": [
+            "web",
+            "biz",
+            "data",
+            "adds"
+          ],
+          "networkInterfaces": [ ],
+          "securityRules": [
+            {
+              "name": "RDPAllow",
+              "direction": "Inbound",
+              "priority": 100,
+              "sourceAddressPrefix": "10.1.0.0/27",
+              "destinationAddressPrefix": "*",
+              "sourcePortRange": "3389",
+              "destinationPortRange": "3389",
+              "access": "Allow",
+              "protocol": "Tcp"
+            },
+            {
+              "name": "OpsTrafficAllow",
+              "direction": "Inbound",
+              "priority": 110,
+              "sourceAddressPrefix": "10.0.0.0/16",
+              "destinationAddressPrefix": "*",
+              "sourcePortRange": "*",
+              "destinationPortRange": "*",
+              "access": "Allow",
+              "protocol": "*"
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

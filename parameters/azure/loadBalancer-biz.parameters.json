@@ -1,0 +1,131 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualMachinesSettings": {
+      "metadata": {
+        "description": "VM Settings for biz tier"
+      },
+      "value": {
+        "namePrefix": "operational-biz",
+        "computerNamePrefix": "biz",
+        "size": "Standard_DS1_v2",
+        "osType": "windows",
+        "adminUsername": "AdminUser",
+        "adminPassword": "AweS0me@PW",
+        "osAuthenticationType": "password",
+        "nics": [
+          {
+            "isPublic": "false",
+            "subnetName": "biz",
+            "privateIPAllocationMethod": "Dynamic",
+            "isPrimary": "true",
+            "enableIPForwarding": false,
+            "dnsServers": [ ]
+          }
+        ],
+        "imageReference": {
+          "publisher": "MicrosoftWindowsServer",
+          "offer": "WindowsServer",
+          "sku": "2012-R2-Datacenter",
+          "version": "latest"
+        },
+        "dataDisks": {
+          "count": 1,
+          "properties": {
+            "diskSizeGB": 128,
+            "caching": "None",
+            "createOption": "Empty"
+          }
+        },
+        "osDisk": {
+          "caching": "ReadWrite"
+        },
+        "extensions": [
+          {
+            "name": "IaaSAntimalware",
+            "publisher": "Microsoft.Azure.Security",
+            "type": "IaaSAntimalware",
+            "typeHandlerVersion": "1.3",
+            "autoUpgradeMinorVersion": true,
+            "settingsConfigMapperUri": "https://raw.githubusercontent.com/mspnp/template-building-blocks/v1.0.0/templates/resources/Microsoft.Compute/virtualMachines/extensions/vm-extension-passthrough-settings-mapper.json",
+            "settingsConfig": {
+              "AntimalwareEnabled": true,
+              "RealtimeProtectionEnabled": "false",
+              "ScheduledScanSettings": {
+                "isEnabled": "false",
+                "day": "7",
+                "time": "120",
+                "scanType": "Quick"
+              },
+              "Exclusions": {
+              }
+            },
+            "protectedSettingsConfig": {
+            }
+          }
+        ],
+        "availabilitySet": {
+          "useExistingAvailabilitySet": "No",
+          "name": "operational-biz-vm-as"
+        }
+      }
+    },
+    "loadBalancerSettings": {
+      "value": {
+        "name": "operational-biz-lb",
+        "frontendIPConfigurations": [
+          {
+            "name": "operational-biz-lb-fe",
+            "loadBalancerType": "internal",
+            "internalLoadBalancerSettings": {
+              "privateIPAddress": "10.0.2.254",
+              "subnetName": "biz"
+            }
+          }
+        ],
+        "backendPools": [
+          {
+            "name": "operational-biz-lb-bep",
+            "nicIndex": 0
+          }
+        ],
+        "loadBalancingRules": [
+          {
+            "name": "https-rule",
+            "frontendPort": 443,
+            "backendPort": 443,
+            "protocol": "Tcp",
+            "backendPoolName": "operational-biz-lb-bep",
+            "frontendIPConfigurationName": "operational-biz-lb-fe",
+            "probeName": "https-probe",
+            "enableFloatingIP": false
+          }
+        ],
+        "probes": [
+          {
+            "name": "https-probe",
+            "port": 443,
+            "protocol": "Http",
+            "requestPath": "/"
+          }
+        ],
+        "inboundNatRules": [ ]
+      }
+    },
+    "virtualNetworkSettings": {
+      "value": {
+        "name": "azure-operational-vnet",
+        "resourceGroup": "uk-official-networking-rg"
+      }
+    },
+    "buildingBlockSettings": {
+      "value": {
+        "storageAccountsCount": 2,
+        "vmCount": 2,
+        "vmStartIndex": 1
+      }
+    }
+  }
+}
+

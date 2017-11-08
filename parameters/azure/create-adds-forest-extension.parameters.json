@@ -1,0 +1,59 @@
+﻿{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "virtualMachinesExtensionSettings": {
+      "metadata": {
+        "description": "VM Extension Settings"
+      },
+      "value": [
+        {
+          "vms": [ "operational-ad-vm1" ],
+          "extensions": [
+            {
+              "name": "install-adds-forest",
+              "publisher": "Microsoft.Compute",
+              "type": "CustomScriptExtension",
+              "typeHandlerVersion": "1.8",
+              "autoUpgradeMinorVersion": false,
+              "settingsConfigMapperUri": "https://raw.githubusercontent.com/mspnp/reference-architectures/master/compliance/uk-official/three-tier-web-with-adds/templates/onpremise/adds-domain-controller-extension-settings-mapper.json",
+              "settingsConfig": {
+                "activeDirectorySettings": {
+                  "domainName": "treyresearch.net",
+                  "domainNetbiosName": "treyresearch",
+                  "safeModePassword": "Saf3M0de@PW"
+                },
+                "fileUris": [
+                  "https://raw.githubusercontent.com/mspnp/reference-architectures/master/compliance/uk-official/three-tier-web-with-adds/extensions/adds.ps1"
+                ]
+              },
+              "protectedSettingsConfig": {
+              }
+            },
+            {
+              "name": "IaaSAntimalware",
+              "publisher": "Microsoft.Azure.Security",
+              "type": "IaaSAntimalware",
+              "typeHandlerVersion": "1.3",
+              "autoUpgradeMinorVersion": true,
+              "settingsConfigMapperUri": "https://raw.githubusercontent.com/mspnp/template-building-blocks/v1.0.0/templates/resources/Microsoft.Compute/virtualMachines/extensions/vm-extension-passthrough-settings-mapper.json",
+              "settingsConfig": {
+                "AntimalwareEnabled": true,
+                "RealtimeProtectionEnabled": "false",
+                "ScheduledScanSettings": {
+                  "isEnabled": "false",
+                  "day": "7",
+                  "time": "120",
+                  "scanType": "Quick"
+                },
+                "Exclusions": {
+                }
+              },
+              "protectedSettingsConfig": { }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
