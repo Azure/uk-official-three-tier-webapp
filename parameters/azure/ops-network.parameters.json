@@ -78,7 +78,7 @@
       "metadata": {
         "description": "Application gateway size"
       },
-      "value": "Standard_Small"
+      "value": "WAF_Medium"
     },
     "applicationGatewayInstanceCount": {
       "metadata": {
@@ -107,6 +107,18 @@
           "IpAddress": "10.0.1.254"
         }
       ]
+    },
+    "wafEnabled": {
+      "value": true
+    },
+    "wafMode": {
+      "value": "Prevention"
+    },
+    "wafRuleSetType": {
+      "value": "OWASP"
+    },
+    "wafRuleSetVersion": {
+      "value": "3.0"
     },
     "cookieBasedAffinity": {
       "metadata": {
