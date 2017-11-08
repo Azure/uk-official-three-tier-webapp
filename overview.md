@@ -306,7 +306,7 @@ It is recommended that customers enable Azure Security Center in their
 Azure Subscription.
 
 
-## NCSC Security Matrix Compliance Documentation
+## NCSC Cloud Security Principles Compliance Documentation
 
 The Crown Commercial Service (an agency that works to improve commercial and procurement activity by the government) renewed the
 classification of Microsoft in-scope enterprise cloud services to  G-Cloud v6, covering all its offerings at the OFFICIAL level. Details
