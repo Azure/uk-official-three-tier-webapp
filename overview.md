@@ -12,7 +12,7 @@ Overview
 
  The NCSC recommend their Cloud Security Principles be used by customers to evaluate the security properties of the service, and to help understand the division of responsibility between the customer and supplier. We’ve provided information against each of these principles to help you understand the split of responsibilities.
 
- This architecture and corresponding ARM templates are supported by the Microsoft whitepaper, [Azure Blueprint for the UK Government](https://aka.ms/azureblueprintukg-cloud). This paper catalogues how Azure services align with the UK NCSC 14 Cloud Security Principles,
+ This architecture and corresponding ARM templates are supported by the Microsoft whitepaper, [Azure Blueprint for the UK Government](https://gallery.technet.microsoft.com/14-Cloud-Security-Controls-670292c1). This paper catalogues how Azure services align with the UK NCSC 14 Cloud Security Principles,
  thereby enabling organisations to fast-track their ability to meet their compliance obligations using cloud-based services globally and in the UK on the Microsoft Azure cloud.
 
  This template deploys the infrastructure for the workload. Application code and supporting business tier and data tier software must be installed and configured. Detailed deployment instructions are available [here](https://github.com/Azure/fedramp-iaas-webapp).
