@@ -14,7 +14,7 @@
  This architecture and corresponding ARM templates are supported by the Microsoft whitepaper, [Azure Blueprint for the UK Government](https://aka.ms/azureblueprintukg-cloud). This paper catalogues how Azure services align with the UK NCSC 14 Cloud Security Principles,
  thereby enabling organisations to fast-track their ability to meet their compliance obligations using cloud-based services globally and in the UK on the Microsoft Azure cloud.
 
- This template deploys the infrastructure for the workload. Application code and supporting business tier and data tier software must be installed and configured. Detailed deployment instructions are available [here](https://github.com/Azure/uk-official-three-tier-webapp).
+ This template deploys the infrastructure for the workload. Application code and supporting business tier and data tier software must be installed and configured. Detailed deployment instructions are available [here](https://aka.ms/ukwebappblueprintrepo).
 
  If you do not have an Azure subscription then you can sign up quickly and easily - [Get Started with Azure](https://azure.microsoft.com/get-started/).
 
@@ -317,12 +317,12 @@ This UK-OFFICIAL Azure Blueprint Solution aligns to the 14 cloud security
  Principles](https://www.ncsc.gov.uk/guidance/implementing-cloud-security-principles)
  to ensure an environment that supports workloads classified as UK-OFFICIAL.
 
- The [Customer Responsibility Matrix](https://servicetrust.microsoft.com/Documents/TrustDocuments?downloadDocument=1&documentId=6460e86c-9ae7-4c2e-9c87-7d01c8173f34) (Excel Workbook) lists
+ The [Customer Responsibility Matrix](https://aka.ms/blueprintuk-gcrm) (Excel Workbook) lists
  all 14 cloud security principles, and the matrix denotes, for each principle (or principle subpart),
  whether the principle implementation is the responsibility of Microsoft, the customer, or shared between the two.
 
  The [Principle Implementation Matrix](https://servicetrust.microsoft.com/Documents/TrustDocuments) (Excel Workbook) lists all 14 cloud security principles, and the matrix denotes, for each principle (or principle subpart) that is designated a customer responsibility in the Customer Responsibilities Matrix, 1) if the Azure Blueprint Automation implements the principle, and 2) a description of how the implementation aligns with the principle requirement(s).
- This content is also available [here](https://github.com/Azure/uk-official-three-tier-webapp/blob/master/principles-overview.md).
+ This content is also available [here](https://aka.ms/ukwebappblueprintpim).
 
  Furthermore, the Cloud Security Alliance (CSA) published the Cloud Control Matrix to support customers in the evaluation of cloud providers and to identify questions that should be
  answered before moving to cloud services. In response, Microsoft Azure answered the CSA Consensus Assessment Initiative Questionnaire ([CSA CAIQ](https://www.microsoft.com/TrustCenter/Compliance/CSA)), which describes how Microsoft
@@ -330,7 +330,7 @@ This UK-OFFICIAL Azure Blueprint Solution aligns to the 14 cloud security
 
 ## Deploy the Solution
 
-There are two methods that deployment users may use to deploy this Azure Blueprint solution. The first method uses a PowerShell script, whereas the second method utilises Azure Portal to deploy the reference architecture. Detailed deployment instructions are available [here](https://github.com/Azure/uk-official-three-tier-webapp).
+There are two methods that deployment users may use to deploy this Azure Blueprint solution. The first method uses a PowerShell script, whereas the second method utilises Azure Portal to deploy the reference architecture. Detailed deployment instructions are available [here](https://aka.ms/ukwebappblueprintrepo).
 
 ## Disclaimer
 
