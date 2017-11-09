@@ -43,7 +43,7 @@ $vnetPeeringTemplate = [System.IO.Path]::Combine($PSScriptRoot, "templates\azure
 $mgmtVnetPeeringTemplate = [System.IO.Path]::Combine($PSScriptRoot, "templates\azure\vnetpeering-mgmt-vnet.json")
 
 #Azure Quick Start template file
-$applicationGatewayTemplate = New-Object System.Uri("https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-application-gateway-create/azuredeploy.json")
+$applicationGatewayTemplate = New-Object System.Uri("https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-application-gateway-waf/azuredeploy.json")
 
 # Azure Parameter Files
 #network infrastructure
@@ -69,7 +69,7 @@ $workloadResourceGroupName = "uk-official-operational-rg"
 $addsResourceGroupName = "uk-official-adds-rg"
 
 # Login to Azure and select your subscription
-Login-AzureRmAccount -SubscriptionId $SubscriptionId  #| Out-Null
+Login-AzureRmAccount -SubscriptionId $SubscriptionId
 
 
 

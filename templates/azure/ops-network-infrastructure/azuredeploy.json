@@ -104,11 +104,10 @@
     "applicationGatewaySize": {
       "type": "string",
       "allowedValues": [
-        "Standard_Small",
-        "Standard_Medium",
-        "Standard_Large"
+        "WAF_Medium",
+        "WAF_Large"
       ],
-      "defaultValue": "Standard_Small",
+      "defaultValue": "WAF_Medium",
       "metadata": {
         "description": "application gateway size"
       }
@@ -169,6 +168,45 @@
       "defaultValue": "Disabled",
       "metadata": {
         "description": "cookie based affinity"
+      }
+    },
+    "wafEnabled": {
+      "type": "bool",
+      "defaultValue": true,
+      "metadata": {
+        "description": "WAF Enabled"
+      }
+    },
+    "wafMode": {
+      "type": "string",
+      "allowedValues": [
+        "Detection",
+        "Prevention"
+      ],
+      "defaultValue": "Prevention",
+      "metadata": {
+        "description": "WAF Mode"
+      }
+    },
+    "wafRuleSetType": {
+      "type": "string",
+      "allowedValues": [
+        "OWASP"
+      ],
+      "defaultValue": "OWASP",
+      "metadata": {
+        "description": "WAF Rule Set Type"
+      }
+    },
+    "wafRuleSetVersion": {
+      "type": "string",
+      "allowedValues": [
+        "2.2.9",
+        "3.0"
+      ],
+      "defaultValue": "3.0",
+      "metadata": {
+        "description": "WAF Rule Set Version"
       }
     }
   },
@@ -325,7 +363,7 @@
       }
     },
     {
-      "apiVersion": "[variables('api-version')]",
+      "apiVersion": "2017-06-01",
       "name": "[parameters('applicationGatewayName')]",
       "type": "Microsoft.Network/applicationGateways",
       "location": "[resourceGroup().location]",
@@ -336,7 +374,7 @@
       "properties": {
         "sku": {
             "name": "[parameters('applicationGatewaySize')]",
-            "tier": "Standard",
+            "tier": "WAF",
             "capacity": "[parameters('applicationGatewayInstanceCount')]"
           },
           "gatewayIPConfigurations": [
@@ -416,7 +454,14 @@
                 }
               }
             }
-          ]
+          ],
+          "webApplicationFirewallConfiguration": {
+            "enabled": "[parameters('wafEnabled')]",
+            "firewallMode": "[parameters('wafMode')]",
+            "ruleSetType": "[parameters('wafRuleSetType')]",
+            "ruleSetVersion": "[parameters('wafRuleSetVersion')]",
+            "disabledRuleGroups": []
+          }
         }
     }
   ]

@@ -13,7 +13,7 @@
     },
     "vnetPeeringTemplate": "[concat(variables('localRepoBaseUrl'), 'templates/azure/vnetpeering/azuredeploy.json')]",
     "opsNetworkInfrastructureTemplate": "[concat(variables('localRepoBaseUrl'), 'templates/azure/ops-network-infrastructure/azuredeploy.json')]",
-    "applicationGatewayTemplate": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-application-gateway-create/azuredeploy.json",
+    "applicationGatewayTemplate": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/101-application-gateway-waf/azuredeploy.json",
     "parameterFiles": {
       "opsNetworkInfrastructureParametersFile": "[concat(variables('localRepoBaseUrl'), 'parameters/azure/ops-network.parameters.json')]",
       "azureMgmtVirtualNetworkParametersFile": "[concat(variables('localRepoBaseUrl'), 'parameters/azure/mgmt-vnet.parameters.json')]",
