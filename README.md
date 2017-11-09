@@ -16,7 +16,6 @@ Rather than develop the templates for this environment from scratch, some templa
 
 Other Azure architectural best practices and guidance can be found in [Azure Reference Architectures](https://docs.microsoft.com/azure/guidance/guidance-architecture). Supporting Microsoft Visio templates are available from the [Microsoft download center](http://download.microsoft.com/download/1/5/6/1569703C-0A82-4A9C-8334-F13D0DF2F472/RAs.vsdx) with the corresponding ARM Templates found at [Azure Reference Architectures ARM Templates](https://github.com/mspnp/reference-architectures).
 
-
 ## Method 1: PowerShell Deployment Process
 To deploy this solution through PowerShell, you will need the latest version of the Azure Resource Manager module to run the PowerShell script that deploys the solution. To deploy the reference architecture, follow these steps:
 1. Download or clone the solution folder from GitHub to your local machine.

@@ -1,6 +1,5 @@
 # Azure Blueprint Automation: Three-Tier Web Applications for UK-OFFICIAL
 
-
 ## Overview
 
  This article provides guidance and automation scripts to deliver a Microsoft Azure three-tier web based architecture appropriate for handling many workloads classified as OFFICIAL in the United Kingdom.
@@ -27,7 +26,6 @@
  to be accessed securely by corporate users or from the internet.
 
 ![alt text](images/diagram.png?raw=true "Azure UK-OFFICAL Three Tier Architecture")
-
 
  This solution uses the following Azure services. Details of the deployment architecture are located in the [deployment architecture](#deployment-architecture) section.
 
@@ -60,12 +58,10 @@
 - (1) local network gateway (on-premises endpoint)
 - (1) Azure network gateway (Azure endpoint)
 
-
-
 (9) Virtual Machines - All VMs are deployed with Azure IaaS Antimalware DSC settings
 
 - (2) Active Directory Domain Services Domain Controllers (Windows Server 2012 R2)
-(2) DNS Server Roles – 1 per VM
+  - (2) DNS Server Roles – 1 per VM
   - (2) NICs connected to Operational VNet – 1 per VM
   - Both are domain-joined to the domain defined in the template
     - Domain created as a part of the deployment
@@ -98,12 +94,10 @@ Availability Sets
 - (1) Biz Tier VM set – 2 VMs
 - (1) Data Tier VM set – 2 VMs
 
-
 Load Balancer
 - (1) Web Tier Load Balancer
 - (1) Biz Tier Load Balancer
 - (1) Data Tier Load Balancer
-
 
 Storage
 - (14) Total Storage Accounts
@@ -122,7 +116,6 @@ Storage
   - Data Tier VMs
     - (2) Primary Locally Redundant Storage (LRS) accounts – 1 for each VM  
     - (1) Diagnostic Locally Redundant Storage (LRS) account for the Data Tier Availability Set
-
 
 ### Deployment Architecture:
 
@@ -159,9 +152,7 @@ Azure Activity Log is an Azure platform service that captures all actions on a s
 
 **Network Monitoring and Alerting**: [Azure Network Watcher](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview) is a platform service provides network packet capture, flow logging, topology tools and diagnostics  for network traffics within your VNets.
 
-
 ## Guidance and Recommendations
-
 
 ### Business Continuity
 
@@ -304,7 +295,6 @@ For example, policies can be applied to specific resource groups, which allows
 the enterprise to tailor its posture to risk.
 It is recommended that customers enable Azure Security Center in their
 Azure Subscription.
-
 
 ## NCSC Cloud Security Principles Compliance Documentation
 
