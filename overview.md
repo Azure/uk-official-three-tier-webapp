@@ -321,8 +321,8 @@ This UK-OFFICIAL Azure Blueprint Solution aligns to the 14 cloud security
  all 14 cloud security principles, and the matrix denotes, for each principle (or principle subpart),
  whether the principle implementation is the responsibility of Microsoft, the customer, or shared between the two.
 
- The [Principle Implementation Matrix](https://servicetrust.microsoft.com/Documents/TrustDocuments) (Excel Workbook) lists all 14 cloud security principles, and the matrix denotes, for each principle (or principle subpart) that is designated a customer responsibility in the Customer Responsibilities Matrix, 1) if the Azure Blueprint Automation implements the principle, and 2) a description of how the implementation aligns with the principle requirement(s).
- This content is also available [here](https://aka.ms/ukwebappblueprintpim).
+ The [Principle Implementation Matrix](https://aka.ms/ukwebappblueprintpim) (Excel Workbook) lists all 14 cloud security principles, and the matrix denotes, for each principle (or principle subpart) that is designated a customer responsibility in the Customer Responsibilities Matrix, 1) if the Azure Blueprint Automation implements the principle, and 2) a description of how the implementation aligns with the principle requirement(s).
+ This content is also available [here](https://github.com/Azure/uk-official-three-tier-webapp/blob/master/principles-overview.md).
 
  Furthermore, the Cloud Security Alliance (CSA) published the Cloud Control Matrix to support customers in the evaluation of cloud providers and to identify questions that should be
  answered before moving to cloud services. In response, Microsoft Azure answered the CSA Consensus Assessment Initiative Questionnaire ([CSA CAIQ](https://www.microsoft.com/TrustCenter/Compliance/CSA)), which describes how Microsoft
