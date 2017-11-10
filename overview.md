@@ -1,8 +1,6 @@
-Azure Blueprint Automation: Three-Tier Web Applications for UK-OFFICIAL
-===================================================================
+# Azure Blueprint Automation: Three-Tier Web Applications for UK-OFFICIAL
 
-Overview
-========
+## Overview
 
  This article provides guidance and automation scripts to deliver a Microsoft Azure three-tier web based architecture appropriate for handling many workloads classified as OFFICIAL in the United Kingdom.
 
@@ -15,12 +13,11 @@ Overview
  This architecture and corresponding ARM templates are supported by the Microsoft whitepaper, [Azure Blueprint for the UK Government](https://gallery.technet.microsoft.com/14-Cloud-Security-Controls-670292c1). This paper catalogues how Azure services align with the UK NCSC 14 Cloud Security Principles,
  thereby enabling organisations to fast-track their ability to meet their compliance obligations using cloud-based services globally and in the UK on the Microsoft Azure cloud.
 
- This template deploys the infrastructure for the workload. Application code and supporting business tier and data tier software must be installed and configured. Detailed deployment instructions are available [here](https://github.com/Azure/fedramp-iaas-webapp).
+ This template deploys the infrastructure for the workload. Application code and supporting business tier and data tier software must be installed and configured. Detailed deployment instructions are available [here](https://aka.ms/ukwebappblueprintrepo).
 
  If you do not have an Azure subscription then you can sign up quickly and easily - [Get Started with Azure](https://azure.microsoft.com/get-started/).
 
-Architecture Diagram and Components
-===================================
+## Architecture Diagram and Components
 
  The Azure templates deliver a three-tier web application
  architecture in an Azure cloud environment that supports UK-OFFICIAL
@@ -29,7 +26,6 @@ Architecture Diagram and Components
  to be accessed securely by corporate users or from the internet.
 
 ![alt text](images/diagram.png?raw=true "Azure UK-OFFICAL Three Tier Architecture")
-
 
  This solution uses the following Azure services. Details of the deployment architecture are located in the [deployment architecture](#deployment-architecture) section.
 
@@ -62,12 +58,10 @@ Architecture Diagram and Components
 - (1) local network gateway (on-premises endpoint)
 - (1) Azure network gateway (Azure endpoint)
 
-
-
 (9) Virtual Machines - All VMs are deployed with Azure IaaS Antimalware DSC settings
 
 - (2) Active Directory Domain Services Domain Controllers (Windows Server 2012 R2)
-(2) DNS Server Roles – 1 per VM
+  - (2) DNS Server Roles – 1 per VM
   - (2) NICs connected to Operational VNet – 1 per VM
   - Both are domain-joined to the domain defined in the template
     - Domain created as a part of the deployment
@@ -100,12 +94,10 @@ Availability Sets
 - (1) Biz Tier VM set – 2 VMs
 - (1) Data Tier VM set – 2 VMs
 
-
 Load Balancer
 - (1) Web Tier Load Balancer
 - (1) Biz Tier Load Balancer
 - (1) Data Tier Load Balancer
-
 
 Storage
 - (14) Total Storage Accounts
@@ -125,8 +117,7 @@ Storage
     - (2) Primary Locally Redundant Storage (LRS) accounts – 1 for each VM  
     - (1) Diagnostic Locally Redundant Storage (LRS) account for the Data Tier Availability Set
 
-
- ### Deployment Architecture:
+### Deployment Architecture:
 
 **On-Premises Network**: A private local-area network implemented in an organisation.
 
@@ -161,10 +152,7 @@ Azure Activity Log is an Azure platform service that captures all actions on a s
 
 **Network Monitoring and Alerting**: [Azure Network Watcher](https://docs.microsoft.com/azure/network-watcher/network-watcher-monitoring-overview) is a platform service provides network packet capture, flow logging, topology tools and diagnostics  for network traffics within your VNets.
 
-
-Guidance and Recommendations
-=============================
-
+## Guidance and Recommendations
 
 ### Business Continuity
 
@@ -308,9 +296,7 @@ the enterprise to tailor its posture to risk.
 It is recommended that customers enable Azure Security Center in their
 Azure Subscription.
 
-
-NCSC Security Matrix Compliance Documentation
-===============
+## NCSC Cloud Security Principles Compliance Documentation
 
 The Crown Commercial Service (an agency that works to improve commercial and procurement activity by the government) renewed the
 classification of Microsoft in-scope enterprise cloud services to  G-Cloud v6, covering all its offerings at the OFFICIAL level. Details
@@ -321,23 +307,23 @@ This UK-OFFICIAL Azure Blueprint Solution aligns to the 14 cloud security
  Principles](https://www.ncsc.gov.uk/guidance/implementing-cloud-security-principles)
  to ensure an environment that supports workloads classified as UK-OFFICIAL.
 
- The [Customer Responsibility Matrix](https://github.com/GarrettJudd/reference-architectures/blob/master/compliance/uk-official/three-tier-web-with-adds/Azure%20Blueprint%20-%20NCSC%20Cloud%20Security%20Principles%20-%20Customer%20Responsibilities%20Matrix.xlsx) (Excel Workbook) lists
+ The [Customer Responsibility Matrix](https://aka.ms/blueprintuk-gcrm) (Excel Workbook) lists
  all 14 cloud security principles, and the matrix denotes, for each principle (or principle subpart),
  whether the principle implementation is the responsibility of Microsoft, the customer, or shared between the two.
 
- The [Principle Implementation Matrix](https://github.com/GarrettJudd/reference-architectures/blob/master/compliance/uk-official/three-tier-web-with-adds/Azure%20Blueprint%20Automation%20-%20Three-Tier%20Web%20Applications%20for%20UK-OFFICIAL%20-%20Principle%20Implementation%20Matrix%20.xlsx) (Excel Workbook) lists all 14 cloud security principles, and the matrix denotes, for each principle (or principle subpart) that is designated a customer responsibility in the Customer Responsibilities Matrix, 1) if the Azure Blueprint Automation implements the principle, and 2) a description of how the implementation aligns with the principle requirement(s).
- This content is also available [here](https://github.com/GarrettJudd/reference-architectures/blob/master/compliance/uk-official/three-tier-web-with-adds/Azure%20Blueprint%20-%20NCSC%20Cloud%20Security%20Principles%20-%20Principle%20Implementations.md).
+ The [Principle Implementation Matrix](https://aka.ms/ukwebappblueprintpim) (Excel Workbook) lists all 14 cloud security principles, and the matrix denotes, for each principle (or principle subpart) that is designated a customer responsibility in the Customer Responsibilities Matrix, 1) if the Azure Blueprint Automation implements the principle, and 2) a description of how the implementation aligns with the principle requirement(s).
+ This content is also available [here](https://github.com/Azure/uk-official-three-tier-webapp/blob/master/principles-overview.md).
 
  Furthermore, the Cloud Security Alliance (CSA) published the Cloud Control Matrix to support customers in the evaluation of cloud providers and to identify questions that should be
  answered before moving to cloud services. In response, Microsoft Azure answered the CSA Consensus Assessment Initiative Questionnaire ([CSA CAIQ](https://www.microsoft.com/TrustCenter/Compliance/CSA)), which describes how Microsoft
  addresses the suggested principles.
 
- Deploy the Solution
- ===============
-There are two methods that deployment users may use to deploy this Azure Blueprint solution. The first method uses a PowerShell script, whereas the second method utilises Azure Portal to deploy the reference architecture. Detailed deployment instructions are available [here](https://github.com/Azure/fedramp-iaas-webapp).
+## Deploy the Solution
 
- Disclaimer
- ===========
+There are two methods that deployment users may use to deploy this Azure Blueprint solution. The first method uses a PowerShell script, whereas the second method utilises Azure Portal to deploy the reference architecture. Detailed deployment instructions are available [here](https://aka.ms/ukwebappblueprintrepo).
+
+## Disclaimer
+
  - This document is for informational purposes only. MICROSOFT MAKES NO WARRANTIES, EXPRESS, IMPLIED, OR STATUTORY, AS TO THE INFORMATION IN THIS DOCUMENT. This document is provided "as-is." Information and views expressed in this document, including URL and other Internet website references, may change without notice. Customers reading this document bear the risk of using it.
  - This document does not provide customers with any legal rights to any intellectual property in any Microsoft product or solutions.
  - Customers may copy and use this document for internal reference purposes.
