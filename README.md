@@ -1,6 +1,6 @@
 Solution overview
 ================
-For more information about this solution, see [Azure Blueprint Automation: Three-Tier Web Applications for UK-OFFICIAL](https://aka.ms/ukwebappblueprint)
+For more information about this solution, see [Azure Blueprint Automation: Three-Tier Web Applications for UK-OFFICIAL](http://aka.ms/ukwebappblueprint)
 
 Deploy the solution
 ================
