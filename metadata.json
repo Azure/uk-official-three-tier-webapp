@@ -1,7 +1,0 @@
-﻿{
-  "itemDisplayName": "Azure UK-OFFICIAL Three Tier Web Application",
-  "description": "This template delivers a three tier web application architecture with Active Directory and Domain Services that ensures a UK-OFFICIAL compliant architecture.",
-  "summary": "Deploy a NCSC 14 Security Rules Azure UK-OFFICIAL Compliant Three Tier Web Application",
-  "githubUsername": "ben-houghton",
-  "dateUpdated": "2017-20-02"
-}
