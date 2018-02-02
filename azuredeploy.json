@@ -17,13 +17,13 @@
             }
         },
         "vmAdminPassword": {
-            "type": "string",
+            "type": "secureString",
             "metadata": {
                 "description": "VM Admin Password"
             }
         },
         "aDSafeModePassword": {
-            "type": "string",
+            "type": "secureString",
             "metadata": {
                 "description": "AD Safemode Password"
             }
