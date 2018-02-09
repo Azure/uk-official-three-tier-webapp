@@ -1,11 +1,11 @@
 # Solution Overview
-For more information about this solution, see [Azure Blueprint Automation: Three-Tier Web Applications for UK-OFFICIAL](https://aka.ms/ukwebappblueprint)
+For more information about this solution, see [Azure Security and Compliance Blueprint - UK-OFFICAL Three-Tier Web Applications Automation](https://aka.ms/ukwebappblueprint).
 
 # Deploy the Solution
 
 These templates automatically deploy the Azure resources for a Windows based three-tier application with an Active Directory Domain architecture. **As this is a complex deployment that delivers the full infrastructure and environment, it can take up to two hours to deploy using the Azure Portal (Method 2).** Progress can be monitored from the Resource Group blade and Deployment output blade in the Azure Portal.
 
-Rather than develop the templates for this environment from scratch, some templates used are drawn from the [Microsoft Patterns and Practices GitHub Repository](https://github.com/mspnp) [Template Building Blocks](https://github.com/mspnp/template-building-blocks). There are two methods that deployment users may use to deploy this Azure Blueprint reference architecture. The first method uses a PowerShell script, whereas the second method utilises Azure Portal to deploy the reference architecture. These two methods are detailed in the sections below.
+Rather than develop the templates for this environment from scratch, some templates used are drawn from the [Microsoft Patterns and Practices GitHub Repository](https://github.com/mspnp) [Template Building Blocks](https://github.com/mspnp/template-building-blocks). There are two methods that deployment users may use to deploy this reference architecture. The first method uses a PowerShell script, whereas the second method utilises Azure Portal to deploy the reference architecture. These two methods are detailed in the sections below.
 
  As a pre-requisite to deployment, users should ensure that they have:
 
