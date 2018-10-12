@@ -1,12 +1,15 @@
 # Solution Overview
+
 For more information about this solution, see [Azure Security and Compliance Blueprint - UK-OFFICAL Three-Tier Web Applications Automation](https://aka.ms/ukwebappblueprint).
 
 # Deploy the Solution
+
 These templates automatically deploy the Azure resources for a Windows based three-tier application with an Active Directory Domain architecture. **As this is a complex deployment that delivers the full infrastructure and environment, it can take up to two hours to deploy using the Azure Portal (Method 2).** Progress can be monitored from the Resource Group blade and Deployment output blade in the Azure Portal.
 
 Rather than developing the templates for this environment from scratch, some templates used are drawn from the [Microsoft Patterns and Practices GitHub Repository](https://github.com/mspnp) as well as [Template Building Blocks](https://github.com/mspnp/template-building-blocks). There are two methods that can be used to deploy this reference architecture. The first method uses a [Azure PowerShell](https://docs.microsoft.com/en-us/powershell/azure/overview?view=azurermps-6.10.0) script, whereas the second method utilises the Azure Portal. Both methods are detailed in the sections below.
 
  ### Pre-requisites
+
  In order to use these templates, users should ensure that they have:
 
 - A valid Azure Subscription
@@ -15,12 +18,14 @@ Rather than developing the templates for this environment from scratch, some tem
 - The [latest version of PowerShell](https://azure.microsoft.com/documentation/articles/powershell-install-configure/) and the [Azure Resource Manager module](https://docs.microsoft.com/powershell/azure/install-azurerm-ps?view=azurermps-4.4.1) for PowerShell to execute the deployment script
 
 ### Additional Resources
+
 Many supporting resources exist that will assist in the creation of a suitable architecture for your workload, these include:
 - Azure architectural best practices guidance in the [Azure Reference Architectures](https://docs.microsoft.com/azure/guidance/guidance-architecture)
 - A library of Azure Resource Manager architecture templates can be found at [Azure Reference Architectures ARM Templates](https://github.com/mspnp/reference-architectures) - including a set of supporting Microsoft Visio diagrams which is available from the [Microsoft download center](http://download.microsoft.com/download/1/5/6/1569703C-0A82-4A9C-8334-F13D0DF2F472/RAs.vsdx)
 - Community contributed templates are available in [Azure Quickstart](https://azure.microsoft.com/en-us/resources/templates/)
 
 ## Method 1: PowerShell Deployment Process
+
 To deploy this solution through Azure PowerShell, you will need the latest version of the Azure Resource Manager module to run the PowerShell script that deploys the solution. To deploy the reference architecture, follow these steps:
 1. Download or clone the solution folder from [GitHub](https://github.com/Azure/uk-official-three-tier-webapp) to your local machine.
 2. Open a PowerShell Window and navigate to the `\compliance\uk-official\three-tier-web-with-adds\` folder.
@@ -44,7 +49,7 @@ The reference architecture is deployed in three stages: `Networking -> Active Di
 
 > For virtual machines, the parameter files include hard-coded administrator user names and passwords. These values can be changed in the parameter files if required. It is ***strongly recommended that you immediately change both on all the VMs***. Click on each VM in the Azure portal then click on **Reset password** in the **Support troubleshooting** blade.
 
-## Stage 1: Deploy Networking Infrastructure
+### Stage 1: Deploy Networking Infrastructure
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fuk-official-three-tier-webapp%2Fmaster%2Ftemplates%2Fvirtualnetwork.azuredeploy.json" target="_blank">
 <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png"/>
@@ -62,7 +67,8 @@ The reference architecture is deployed in three stages: `Networking -> Active Di
 
 >If for some reason your deployment fails, it is advisable to delete the resource group in its entirety to avoid incurring cost and orphan resources, fix the issue, and redeploy the resource groups and template.
 
-## Stage 2: Deploy Active Directory Domain
+### Stage 2: Deploy Active Directory Domain
+
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fuk-official-three-tier-webapp%2Fmaster%2Ftemplates%2Faads.azuredeploy.json" target="_blank">
 <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png"/>
 </a>
@@ -83,7 +89,8 @@ The reference architecture is deployed in three stages: `Networking -> Active Di
 
 > **Note**: The deployment includes default passwords if left unchanged. It is strongly recommended that you change these values.
 
-## Stage 3: Deploy Operational Workload Infrastructure
+### Stage 3: Deploy Operational Workload Infrastructure
+
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fuk-official-three-tier-webapp%2Fmaster%2Ftemplates%2Fworkloads.azuredeploy.json" target="_blank">
 <img src="https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.png"/>
 </a>
@@ -105,6 +112,7 @@ The reference architecture is deployed in three stages: `Networking -> Active Di
 > **Note**: The deployment includes default passwords if left unchanged. It is strongly recommended that you change these values.
 
 ## Deployment and Configuration Activities
+
 The table below provides additional information about deployment parameters, as well as other configuration steps related to the deployment activities.
 
   Activity|Configuration|
