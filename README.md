@@ -1,3 +1,6 @@
+## NOTE: This content is no longer being maintained or supported.
+Please see updated blueprints here: [https://docs.microsoft.com/en-us/azure/governance/blueprints/samples/](https://docs.microsoft.com/en-us/azure/governance/blueprints/samples/)
+
 # Solution Overview
 
 For more information about this solution, see [Azure Security and Compliance Blueprint - UK-OFFICAL Three-Tier Web Applications Automation](https://aka.ms/ukwebappblueprint).
